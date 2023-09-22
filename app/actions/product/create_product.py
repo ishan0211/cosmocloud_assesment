@@ -1,4 +1,3 @@
-from app.models import SessionData
 from app.exceptions.service_exception import ServiceException
 from typing import Optional
 from beanie import PydanticObjectId
@@ -20,8 +19,11 @@ class CreateProduct:
                 "product_available_quantity": self.product_available_quantity,
                 "status": Status.ACTIVE.value
             }
+            print(create_product_request)
             new_product = Product(**dict(create_product_request))
             await new_product.create()
+            print('1')
+            print(dict(new_product)["id"])
             return dict(new_product)["id"]
         except ServiceException as e:
             raise ServiceException(str(e))

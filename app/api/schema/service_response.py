@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class UserSessionResponse(BaseModel):
+class SessionResponse(BaseModel):
     message: str
     data: dict
     status: int
