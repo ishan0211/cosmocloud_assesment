@@ -1,9 +1,10 @@
 from beanie import Document
-from app.models.order_item import OrderItem
-from app.models.user_address import UserAddress
 from typing import List
+from datetime import datetime
+from app.api.schema.order_item import OrderItem
+from app.api.schema.user_address import UserAddress
 
 class Order(Document):
-    timestamp: str 
     items: List[OrderItem]
     user_address: UserAddress
+    timestamp: datetime

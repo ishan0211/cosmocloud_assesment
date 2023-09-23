@@ -9,7 +9,7 @@ class DeleteOperatorSession:
         self.product_name = product_name
     
     async def delete_product(self):
-        product_to_be_deleted = await Product.find({"product_name":self.product_name,"status":"active"}).to_list(length = 1)
+        product_to_be_deleted = await Product.find_one({"product_name": self.product_name,"status":"active"})
         if not product_to_be_deleted:
             raise HTTPException(status_code=404, detail="product doesn't exists!!")
         product_to_be_deleted.status = Status.INACTIVE.value

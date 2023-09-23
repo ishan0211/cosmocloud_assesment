@@ -4,7 +4,7 @@ from app.constants.service_constants import Status
 
 
 class ListProducts:
-    def __init__(self,product_name: int = None,min_quantity: int = None,max_quantity: int= None,min_price: int = None,max_price: int = None,page: int = 1, page_limit: int = 10):
+    def __init__(self,product_name: str = None,min_quantity: int = None,max_quantity: int= None,min_price: float = None,max_price: float = None,page: int = 1, page_limit: int = 10):
         self.product_name = product_name
         self.min_quantity = min_quantity
         self.max_quantity = max_quantity
