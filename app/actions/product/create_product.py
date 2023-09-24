@@ -21,7 +21,8 @@ class CreateProduct:
                 "product_price": self.product_price,
                 "product_available_quantity": self.product_available_quantity,
                 "status": Status.ACTIVE.value,
-                "created_at": datetime.now()
+                "created_at": datetime.now(),
+                "updated_at": datetime.now()
             }
             print(create_product_request)
             new_product = Product(**dict(create_product_request))

@@ -1,7 +1,6 @@
-from beanie import Link
+from beanie import PydanticObjectId
 from pydantic import BaseModel
-from app.models.product import Product
 
 class OrderItem(BaseModel):
-    product_id: Link[Product]
+    product_id: PydanticObjectId
     bought_quantity: int

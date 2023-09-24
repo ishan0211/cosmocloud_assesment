@@ -7,4 +7,6 @@ from app.api.schema.user_address import UserAddress
 class Order(Document):
     items: List[OrderItem]
     user_address: UserAddress
-    timestamp: datetime
+    status: str
+    created_at: datetime
+    updated_at: datetime

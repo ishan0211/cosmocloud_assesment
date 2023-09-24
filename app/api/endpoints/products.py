@@ -9,6 +9,7 @@ from typing import List,Optional
 from app.actions.product.list_products import ListProducts
 from app.actions.product.update_product_details import UpdateProductDetails
 from app.api.schema.update_product_request import UpdateProductRequest
+from app.actions.product.bulk_create_product import BulkCreateProducts
 
 router = APIRouter(prefix="/products")
 
@@ -20,13 +21,13 @@ async def create_new_product(create_request: CreateProductRequest):
     except ServiceException as e:
         return SessionResponse(message=str(e), status=404, data=None)
 
-@router.delete("/", tags=['products'])
-async def delete_product(product_name: str):
+@router.post("/bulk", tags=['products'])
+async def bulk_create_product():
     try:
-        jc_session_id = await EndSession(jc_session_id,operator_id).run()
-        return UserSessionResponse(message="success !!", status=200, data={"jc_session_id": jc_session_id})
+        product_ids = await BulkCreateProducts().run()
+        return SessionResponse(message="success !!", status=200, data={"product_ids": product_ids})
     except ServiceException as e:
-        return UserSessionResponse(message=str(e), status=404, data=None)
+        return SessionResponse(message=str(e), status=404, data=None)
 
 @router.get('/', tags=["products"])    
 async def list_products(
