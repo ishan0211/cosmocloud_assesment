@@ -28,8 +28,6 @@ class CancelOrder():
             raise HTTPException(status_code=404,detail="one of the product is not present")
         for product in products:
             bought_quantity = self.find_order_item(product.id,items)
-            if bought_quantity>product.product_available_quantity:
-                raise HTTPException(status_code=404,detail="quantity bought exceeds available quantity")
             product.product_available_quantity = product.product_available_quantity + bought_quantity
             await product.save()
         return products
@@ -39,8 +37,10 @@ class CancelOrder():
             order = await GetOrderById(self.order_id).run()
             order_item = order.items
             await self.add_product_count_for_order(order_item)
+            print("lol")
             order.updated_at = datetime.now()
             order.status = Status.INACTIVE.value
-            return dict(order)["id"]
+            order.save()
+            return str(dict(order)["id"])
         except ServiceException as e:
             raise ServiceException(str(e))

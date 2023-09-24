@@ -24,7 +24,6 @@ class CreateProduct:
                 "created_at": datetime.now(),
                 "updated_at": datetime.now()
             }
-            print(create_product_request)
             new_product = Product(**dict(create_product_request))
             await new_product.create()
             return dict(new_product)["id"]

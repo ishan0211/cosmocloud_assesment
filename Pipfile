@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 uvicorn = {version = "*", extras = ["standard"]}
 beanie = "*"
-pymongo = "*"
 fastapi = "*"
 
 [dev-packages]

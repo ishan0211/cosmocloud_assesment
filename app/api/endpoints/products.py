@@ -1,11 +1,9 @@
-from fastapi import APIRouter,Query,HTTPException,Body
-from beanie import PydanticObjectId
-from uuid import UUID
+from fastapi import APIRouter,Query
 from app.exceptions.service_exception import ServiceException
 from app.api.schema.create_product_request import CreateProductRequest
 from app.actions.product.create_product import CreateProduct
 from app.api.schema.service_response import SessionResponse
-from typing import List,Optional
+from typing import Optional
 from app.actions.product.list_products import ListProducts
 from app.actions.product.update_product_details import UpdateProductDetails
 from app.api.schema.update_product_request import UpdateProductRequest
@@ -32,8 +30,6 @@ async def bulk_create_product():
 @router.get('/', tags=["products"])    
 async def list_products(
     product_name: Optional[str] = Query(None),
-    min_quantity: Optional[int] = Query(None),
-    max_quantity: Optional[int] = Query(None),  
     min_price: Optional[float] = Query(None),
     max_price: Optional[float] = Query(None),
     page: int = Query(1, ge=1),
@@ -41,8 +37,6 @@ async def list_products(
 ):
     products = await ListProducts(
         product_name = product_name,
-        min_quantity=min_quantity,
-        max_quantity = max_quantity,
         min_price = min_price,
         max_price = max_price,
         page=page,
