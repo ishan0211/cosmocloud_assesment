@@ -38,3 +38,6 @@ class BulkCreate(Enum):
 class Status(Enum):
     INACTIVE = "inactive"
     ACTIVE = "active"
+
+class UserType(Enum):
+    UserType=["Admin","Customer"]

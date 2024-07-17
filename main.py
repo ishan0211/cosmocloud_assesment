@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints.products import router as product_router
 from app.api.endpoints.orders import router as order_router
+from app.api.endpoints.users import router as user_router
 from app.core.database import get_db
 from app.core import config
 
@@ -31,3 +32,4 @@ async def health():
 
 app.include_router(router=product_router, prefix="/service")
 app.include_router(router=order_router, prefix="/service")
+app.include_router(router=user_router, prefix="/service")
